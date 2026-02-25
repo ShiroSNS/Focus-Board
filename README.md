@@ -1,4 +1,4 @@
-# FocusBoard
+# Todo Widget
 
 A minimal desktop to-do widget for Windows built with Python and PySide6.
 
