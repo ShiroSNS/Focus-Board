@@ -18,7 +18,6 @@ SETTINGS_FILE = "settings.json"
 TASK_FILE = "tasks.json"
 
 
-# ================= SETTINGS DIALOG ================= #
 
 class SettingsDialog(QDialog):
     def __init__(self, parent):
@@ -61,8 +60,6 @@ class SettingsDialog(QDialog):
         self.parent_widget.set_autostart(state == Qt.Checked)
 
 
-# ================= MAIN WIDGET ================= #
-
 class TodoWidget(QWidget):
     def __init__(self):
         super().__init__()
@@ -79,7 +76,6 @@ class TodoWidget(QWidget):
         self.refresh_tasks()
         self.startup_animation()
 
-    # ---------------- UI ---------------- #
 
     def init_ui(self):
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -119,7 +115,7 @@ class TodoWidget(QWidget):
 
         container_layout.addLayout(top_bar)
 
-        # Scroll area
+ 
         self.scroll = QScrollArea()
         self.scroll.setWidgetResizable(True)
         self.scroll.setFrameShape(QFrame.NoFrame)
@@ -134,7 +130,6 @@ class TodoWidget(QWidget):
 
         main_layout.addWidget(self.container)
 
-        # Resize grip
         self.size_grip = QSizeGrip(self)
         self.size_grip.setFixedSize(14, 14)
 
@@ -147,7 +142,7 @@ class TodoWidget(QWidget):
             self.height() - grip_size.height() - 4
         )
 
-    # ---------------- STARTUP ANIMATION ---------------- #
+  
 
     def startup_animation(self):
         effect = QGraphicsOpacityEffect(self)
@@ -159,7 +154,7 @@ class TodoWidget(QWidget):
         self.anim.setEndValue(1)
         self.anim.start()
 
-    # ---------------- THEME ---------------- #
+
 
     def update_theme(self):
         bg = f"rgba(0,0,0,{self.opacity_value})"
@@ -196,7 +191,7 @@ class TodoWidget(QWidget):
 
         self.save_settings()
 
-    # ---------------- SETTINGS ---------------- #
+   
 
     def open_settings(self):
         dialog = SettingsDialog(self)
@@ -219,7 +214,7 @@ class TodoWidget(QWidget):
                 self.font_size = data.get("font_size", 13)
                 self.auto_start = data.get("auto_start", False)
 
-    # ---------------- AUTOSTART ---------------- #
+   
 
     def set_autostart(self, enabled):
         self.auto_start = enabled
@@ -238,7 +233,7 @@ class TodoWidget(QWidget):
         winreg.CloseKey(key)
         self.save_settings()
 
-    # ---------------- TASKS ---------------- #
+
 
     def add_task(self):
         text = self.input.text().strip()
@@ -311,7 +306,7 @@ class TodoWidget(QWidget):
             with open(TASK_FILE, "r") as f:
                 self.tasks = json.load(f)
 
-    # ---------------- DRAG + LOCK ---------------- #
+
 
     def mousePressEvent(self, event):
         if self.locked:
@@ -335,4 +330,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = TodoWidget()
     window.show()
+
     sys.exit(app.exec())
