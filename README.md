@@ -14,7 +14,8 @@ A minimal desktop to-do widget for Windows built with Python and PySide6.
 
 ## Download
 
-Download the latest version from the Releases section.
+Download the latest version from the Releases section:
+https://github.com/ShiroSNS/Todo-Widget/releases
 
 ## Built With
 
